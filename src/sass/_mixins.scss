@@ -1,0 +1,23 @@
+@mixin prefix ($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+    #{$property}: $value;
+}
+@mixin avoid-breaks {
+    @include prefix(break-inside, avoid, webkit-column);
+    page-break-inside: avoid;
+}
+@mixin gradient ($from, $to) {
+    background: -moz-linear-gradient(top, $from 0%, $to 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, $from 0%, $to 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, $from 0%, $to 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+%h-tag {
+    color: inherit;
+    font-family: $font-heading;
+    font-weight: 400;
+    line-height: 1.2em;
+    margin: 0 0 0.5em 0;
+}

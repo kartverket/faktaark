@@ -1,0 +1,258 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+html {
+    font-size: 10px;
+}
+body {
+    color: $color-black;
+    font-family: Arial, sans-serif;
+    font-size: 1.3rem;
+
+    @media (min-width: $size-tablet) {
+        font-size: 1.4rem;
+    }
+}
+
+.wrapper {
+    margin: 1rem;
+    width: auto;
+
+    @media (min-width: $size-tablet) {
+        margin: 1rem auto;
+        width: $size-tablet - 40px;
+    }
+    @media (min-width: 980px) {
+        margin: 2rem auto;
+        width: 960px;
+    }
+}
+
+/* HELPER CLASSES */
+.text-muted {
+    color: $color-grey;
+}
+/* === */
+
+/* TYPOGRAPHY */
+h1 {
+    @extend %h-tag;
+    font-size: 3.0rem;
+}
+h2 {
+    @extend %h-tag;
+    font-size: 2.4rem;
+}
+h3 {
+    @extend %h-tag;
+    font-size: 1.8rem;
+}
+p {
+    line-height: 1.5em;
+    margin-bottom: 1rem;
+
+    a {
+        color: $color-blue;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+/* === */
+
+/* HEADINGS */
+.kv-heading {
+    border-bottom: solid 2px $color-blue;
+    color: $color-grey;
+    padding-bottom: 0.5rem;
+    
+    @media (min-width: $size-tablet) {
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-bottom: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding-bottom: 0;
+
+        .text {
+            flex-shrink: 1;
+            padding-right: 1rem;
+        }
+
+        .line {
+            background-color: $color-blue;
+            flex-grow: 1;
+            height: 3px;
+            margin-top: 2px;
+        }
+    }
+}
+/* === */
+
+/* STATUS */
+.ssr-status {
+    color: inherit;
+    display: inline-block;
+    min-width: $status-diameter;
+    position: relative;
+    text-decoration: none;
+
+    .icon {
+        border-radius: 50%;
+        display: inline-block;
+        height: $status-diameter;
+        width: $status-diameter;
+    }
+
+    .text {
+        display: none;
+        margin-left: $status-diameter * 0.4;
+
+        @media (min-width: $size-tablet) {
+            display: inline-block;
+        }
+    }
+
+    .green {
+        background-color: $color-green;
+    }
+    .red {
+        background-color: $color-red;
+    }
+    .blue {
+        background-color:  $color-blue;
+    }
+    .brown {
+        background-color: $color-yellow;
+    }
+    .orange {
+        background-color: $color-orange;
+    }
+    .grey {
+        background-color: $color-grey;
+    }
+}
+/* === */
+
+.translate {
+    color: #ccc;
+
+    &.translated {
+        color: inherit;
+    }
+}
+
+
+
+
+
+/* SSR FOO */
+.ssr-foo {
+    table {
+        margin-bottom: 1.5rem;
+        width: 100%;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    caption {
+        background-color: $color-cyan;
+        font-weight: 700;
+        padding: 1.5rem 1rem;
+        
+        @media (min-width: $size-tablet) {
+            text-align: left;
+        }
+    }
+
+    tr {
+        border-bottom: solid 1px $color-grey;
+    }
+
+    th,
+    td {
+        padding: 0.8rem 1rem;
+    }
+
+    th {
+        text-align: right;
+        width: 50%;
+
+        @media (min-width: $size-tablet) {
+            width: 25%;
+        }
+
+        &:after {
+            content: ":";
+        }
+    }
+}
+/* === */
+
+.ssr-table {
+
+    table {
+        width: 100%;
+    }
+
+    thead {
+        background-color: $color-cyan;
+        display: none;
+
+        @media (min-width: $size-tablet) {
+            display: table-header-group;
+        }
+    }
+    tr {
+        border-bottom: solid 1px $color-cyan;
+
+        @media (min-width: $size-tablet) {
+            border-bottom: none;
+        }
+    }
+    th,
+    td {
+        padding: 1rem 0;
+
+        @media (min-width: $size-tablet) {
+            border: solid 1px $color-cyan;
+            padding: 1rem;
+        }
+    }
+    th {
+        font-weight: 700;
+        text-align: left;
+    }
+    td {
+        display: block;
+
+        @media (min-width: $size-tablet) {
+            display: table-cell;
+        }
+    }
+    .ssr-table-label {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        @media (min-width: $size-tablet) {
+            display: none;
+        }
+    }
+}
