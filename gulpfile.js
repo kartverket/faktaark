@@ -4,12 +4,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
 
-var config = {
-    styles: [
-        './bower_components/font-awesome/css/font-awesome.css'
-    ]
-}
-
 gulp.task('fonts', function () {
     gulp.src('./bower_components/font-awesome/fonts/*.*')
     .pipe(gulp.dest('./fonts/'));
