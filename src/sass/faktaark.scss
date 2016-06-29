@@ -38,7 +38,37 @@ body {
 }
 
 /* HELPER CLASSES */
-.text-muted {
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-green {
+    color: $color-green;
+}
+.text-red {
+    color: $color-red;
+}
+.text-blue {
+    color:  $color-blue;
+}
+.text-brown {
+    color: $color-yellow;
+}
+.text-orange {
+    color: $color-orange;
+}
+.text-grey {
     color: $color-grey;
 }
 /* === */
@@ -103,56 +133,12 @@ p {
 }
 /* === */
 
-/* STATUS */
-.ssr-status {
-    color: inherit;
-    display: inline-block;
-    min-width: $status-diameter;
-    position: relative;
-    text-decoration: none;
-
-    .icon {
-        border-radius: 50%;
-        display: inline-block;
-        height: $status-diameter;
-        width: $status-diameter;
-    }
-
-    .text {
-        display: none;
-        margin-left: $status-diameter * 0.4;
-
-        @media (min-width: $size-tablet) {
-            display: inline-block;
-        }
-    }
-
-    .green {
-        background-color: $color-green;
-    }
-    .red {
-        background-color: $color-red;
-    }
-    .blue {
-        background-color:  $color-blue;
-    }
-    .brown {
-        background-color: $color-yellow;
-    }
-    .orange {
-        background-color: $color-orange;
-    }
-    .grey {
-        background-color: $color-grey;
-    }
-}
-/* === */
-
 .translate {
-    color: #ccc;
+    color: $color-red;
 
     &.translated {
-        color: inherit;
+        //color: inherit;
+        color: $color-green;
     }
 }
 
@@ -160,44 +146,26 @@ p {
 
 
 
-/* SSR FOO */
-.ssr-foo {
+/* SSR TABLE */
+.ssr-table {
+    
     table {
         margin-bottom: 1.5rem;
         width: 100%;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    caption {
-        background-color: $color-cyan;
-        font-weight: 700;
-        padding: 1.5rem 1rem;
-        
-        @media (min-width: $size-tablet) {
-            text-align: left;
-        }
-    }
-
-    tr {
-        border-bottom: solid 1px $color-grey;
     }
 
     th,
     td {
-        padding: 0.8rem 1rem;
+        line-height: 2rem;
+        padding: 0.5rem 1rem 0.5rem 0;
     }
 
     th {
-        text-align: right;
-        width: 50%;
-
-        @media (min-width: $size-tablet) {
-            width: 25%;
-        }
-
+        font-weight: 700;
+        text-align: left;
+        white-space: nowrap;
+        width: 1%;
+        
         &:after {
             content: ":";
         }
@@ -205,54 +173,167 @@ p {
 }
 /* === */
 
-.ssr-table {
+.spellings {
+    border-top: dashed 1px $color-cyan;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+	flex-direction: column;
+    
+    .spelling {
+        border-bottom: dashed 1px $color-cyan;
+        -webkit-flex: auto;
+        flex: auto;
+    }
+}
 
+.toggle {
+    display: none;
+
+    .open & {
+        display: block;
+    }
+}
+
+.ssr-general {
+
+    .row {
+        cursor: pointer;
+        @include suffix(display, flex, webkit);
+        @include prefix(flex-direction, row, webkit);
+        @include prefix(user-select, none, moz webkit ms);
+
+        &:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .open & {
+            background-color: rgba(0,0,0,0.2);
+        }
+    }
+    
+    .col {
+        -webkit-flex: 1;
+        flex: 1;
+        line-height: 20px;
+        padding: 1.5rem 1rem;
+        
+        &.none {
+            -webkit-flex: 0;
+            flex: 0;
+        }
+        &.half {
+            -webkit-flex: 0.5;
+            flex: 0.5;
+        }
+        &.double {
+            -webkit-flex: 2;
+            flex: 2;
+        }
+    }
+
+    dl {
+        dt {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+    }
+
+    .case {
+        float: right;
+
+        &:before {
+            content: " (";
+        }
+        &:after {
+            content: ")";
+        }
+    }
+
+    .fa {
+        margin-top: 0.5rem;
+    }
+}
+
+.ssr-info {
+    margin: 1.5rem 0 2rem 0;
+}
+
+.ssr-shadow {
+    border-top: dashed 1px $color-cyan;
+    padding: 1.5rem 1rem 1rem 1rem;
+    position: relative;
+
+    &:before,
+    &:after {
+        content: "";
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+    &:before {
+        @include gradient($shadow-alpha, $shadow-omega);
+        height: 1rem;
+        top: 0;
+    }
+    &:after {
+        @include gradient($shadow-omega, $shadow-alpha);
+        bottom: 0;
+        height: 0.5rem;
+    }
+}
+
+.ssr-columns {
+    
+    dl {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+
+    dt {
+        float: left;
+        font-weight: 700;
+        line-height: 2rem;
+        width: 50%;
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    dd {
+        width: auto;
+        overflow: hidden;
+        float: none;
+        margin-left: 50%;
+        line-height: 2rem;
+        word-wrap: break-word;
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+
+        &:after {
+            content: "\A0";
+        }
+    }
+}
+
+.ssr-docs {
     table {
         width: 100%;
     }
-
-    thead {
-        background-color: $color-cyan;
-        display: none;
-
-        @media (min-width: $size-tablet) {
-            display: table-header-group;
-        }
-    }
     tr {
         border-bottom: solid 1px $color-cyan;
-
-        @media (min-width: $size-tablet) {
-            border-bottom: none;
-        }
+    }
+    tbody tr:last-child {
+        border-bottom: none;
     }
     th,
     td {
-        padding: 1rem 0;
-
-        @media (min-width: $size-tablet) {
-            border: solid 1px $color-cyan;
-            padding: 1rem;
-        }
+        padding: 1rem 1rem 1rem 0;
     }
     th {
         font-weight: 700;
         text-align: left;
-    }
-    td {
-        display: block;
-
-        @media (min-width: $size-tablet) {
-            display: table-cell;
-        }
-    }
-    .ssr-table-label {
-        display: block;
-        font-size: 1.2rem;
-        font-weight: 700;
-
-        @media (min-width: $size-tablet) {
-            display: none;
-        }
     }
 }
