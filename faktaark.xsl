@@ -122,7 +122,9 @@
                                         <xsl:for-each select="app:kasuser/app:KasusForSkrivemåte">
                                             <dd>
                                                 <xsl:value-of select="app:kjernenavn" />
-                                                <span class="case"><xsl:value-of select="app:kasusTilKjernenavn" /></span>
+                                                <span class="case">
+                                                    <span class="translate"><xsl:value-of select="app:kasusTilKjernenavn" /></span>
+                                                </span>
                                             </dd>
                                         </xsl:for-each>
                                     </dl>
