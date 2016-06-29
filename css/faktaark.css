@@ -190,13 +190,13 @@ p {
 
 /* === */
 .spellings {
-  border-top: dashed 1px #7da1c4;
+  border-top: solid 1px #7da1c4;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column; }
   .spellings .spelling {
-    border-bottom: dashed 1px #7da1c4;
+    border-bottom: solid 1px #7da1c4;
     -webkit-flex: auto;
     flex: auto; }
 
@@ -206,25 +206,20 @@ p {
     display: block; }
 
 .toggle-opened {
-  display: block; }
+  display: inline-block; }
   .open .toggle-opened {
     display: none; }
 
 .toggle-closed {
   display: none; }
   .open .toggle-closed {
-    display: block; }
+    display: inline-block; }
 
 .ssr-general .row {
-  cursor: pointer;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
-  flex-direction: column;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  flex-direction: column; }
   @media (min-width: 740px) {
     .ssr-general .row {
       -webkit-flex-direction: row;
@@ -276,10 +271,33 @@ p {
   margin-top: 1rem; }
 
 .ssr-info {
-  margin: 1.5rem 0 2rem 0; }
+  border-top: solid 1px #1a589f; }
+  .ssr-info:last-child {
+    border-bottom: solid 1px #1a589f; }
+  .ssr-info .heading {
+    color: #1a589f;
+    font-weight: 700;
+    padding: 1rem 0.5rem;
+    text-transform: uppercase; }
+    .ssr-info .heading a {
+      color: inherit;
+      display: block;
+      text-decoration: none; }
+  .ssr-info .opened {
+    display: none; }
+  .ssr-info .closed {
+    display: inline-block; }
+  .ssr-info .body {
+    display: none;
+    padding: 0rem 0.5rem 1rem 0.5rem; }
+  .ssr-info.open .body {
+    display: block; }
+  .ssr-info.open .opened {
+    display: inline-block; }
+  .ssr-info.open .closed {
+    display: none; }
 
 .ssr-shadow {
-  border-top: dashed 1px #7da1c4;
   padding: 1.5rem 0 1rem 0;
   position: relative; }
   @media (min-width: 740px) {
@@ -321,7 +339,6 @@ p {
 
 .ssr-columns dt {
   float: left;
-  font-weight: 700;
   line-height: 2rem;
   width: 50%; }
   .ssr-columns dt:after {

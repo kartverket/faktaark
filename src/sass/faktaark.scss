@@ -174,12 +174,12 @@ p {
 /* === */
 
 .spellings {
-    border-top: dashed 1px $color-cyan;
+    border-top: solid 1px $color-cyan;
     @include suffix(display, flex, webkit);
     @include prefix(flex-direction, column, webkit);
     
     .spelling {
-        border-bottom: dashed 1px $color-cyan;
+        border-bottom: solid 1px $color-cyan;
         @include prefix(flex, auto, webkit);
     }
 }
@@ -193,7 +193,7 @@ p {
 }
 
 .toggle-opened {
-    display: block;
+    display: inline-block;
 
     .open & {
         display: none;
@@ -203,17 +203,17 @@ p {
     display: none;
 
     .open & {
-        display: block;
+        display: inline-block;
     }
 }
 
 .ssr-general {
 
     .row {
-        cursor: pointer;
+        //cursor: pointer;
         @include suffix(display, flex, webkit);
         @include prefix(flex-direction, column, webkit);
-        @include prefix(user-select, none, moz webkit ms);
+        //@include prefix(user-select, none, moz webkit ms);
 
         @media (min-width: $size-tablet) {
             @include prefix(flex-direction, row, webkit);
@@ -290,11 +290,51 @@ p {
 }
 
 .ssr-info {
-    margin: 1.5rem 0 2rem 0;
+    border-top: solid 1px $color-blue;
+    //margin: 1.5rem 0 2rem 0;
+    
+    &:last-child {
+        border-bottom: solid 1px $color-blue;
+    }
+
+    .heading {
+        color: $color-blue;
+        font-weight: 700;
+        padding: 1rem 0.5rem;
+        text-transform: uppercase;
+
+        a {
+            color: inherit;
+            display: block;
+            text-decoration: none;
+        }
+    }
+
+    .opened {
+        display: none;
+    }
+    .closed {
+        display: inline-block;
+    }
+
+    .body {
+        display: none;
+        padding: 0rem 0.5rem 1rem 0.5rem;
+    }
+    &.open {
+        .body {
+            display: block;
+        }
+        .opened {
+            display: inline-block;
+        }
+        .closed {
+            display: none;
+        }
+    }
 }
 
 .ssr-shadow {
-    border-top: dashed 1px $color-cyan;
     padding: 1.5rem 0 1rem 0;
     position: relative;
 
@@ -338,7 +378,6 @@ p {
 
     dt {
         float: left;
-        font-weight: 700;
         line-height: 2rem;
         width: 50%;
 

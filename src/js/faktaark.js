@@ -1,9 +1,9 @@
+// Prototypes
 String.prototype.firstUpperCase = function () {
     return this.substr(0, 1).toUpperCase() + this.substr(1);
 }
 
-var i,j;
-
+// Translations
 var translations = {
     'nor': 'Norsk',
     'sme': 'Nordsamisk',
@@ -26,29 +26,25 @@ var translations = {
     'offentligAdministrasjon': 'Offentlig administrasjon'
 };
 
-var translates = document.getElementsByClassName('translate');
-for (i = 0, j = translates.length; i < j; i++) {
-    var content = (translates[i].innerText || translates[i].textContent).trim();
-    console.log(content);
-    if (translations.hasOwnProperty(content)) {
-        translates[i].textContent = translations[content];
-        translates[i].classList.add('translated');
-    } else {
-        translates[i].textContent = content.firstUpperCase();
-    }
-}
-
-var spellingClickHandler = function (event) {
-    event.preventDefault();
-    var targetId = this.dataset.targetId || '';
-    if  (targetId != '') {
-        var targetElement = document.getElementById(targetId);
-        if (targetElement !== null) {
-            targetElement.classList.toggle('open');
+$(function(){
+    // Translate
+    var translateHandler = function (idx) {
+        var content = $(this).text();
+        console.log('"'+content+'"');
+        if (translations.hasOwnProperty(content)) {
+            $(this).text(translations[content]).addClass('translated');
+        } else {
+            $(this).text(content.firstUpperCase());
         }
     }
-}
-var spellings = document.getElementsByClassName('js-spelling-toggle');
-for (i = 0, j = spellings.length; i < j; i++) {
-    spellings[i].addEventListener('click', spellingClickHandler, false);
-}
+    $('.translate').each(translateHandler);
+
+    // Toggle
+    var ssrToggleHandler = function (event) {
+        event.preventDefault();
+        var targetIdentifier = $(this).data('closest') || '';
+        $(this).closest(targetIdentifier).toggleClass('open');
+        
+    }
+    $('.js-toggle').on('click', ssrToggleHandler);
+});

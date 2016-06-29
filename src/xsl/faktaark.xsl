@@ -20,6 +20,7 @@
                     <p><a href="http://www.kartverket.no/Kart/Stedsnavn/">Les meir om stadnamn</a></p>
                     
                     <xsl:apply-templates select="wfs:FeatureCollection/wfs:member/app:Sted" />
+                    <script src="js/jquery.min.js"></script>
                     <script src="js/faktaark.js"></script>
                 </section>
             </body>
@@ -98,14 +99,16 @@
             <div class="spellings">
                 <xsl:for-each select="app:stedsnavn/app:Stedsnavn/app:skrivemåte/app:Skrivemåte">
                     <div class="spelling">
-                        <xsl:attribute name="id">spelling-<xsl:value-of select="position()" /></xsl:attribute>
+                        <!--xsl:attribute name="id">spelling-<xsl:value-of select="position()" /></xsl:attribute-->
                         <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../../../app:språkprioritering, ../../app:språk))" />;</xsl:attribute>
                         <div class="ssr-general">
-                            <div class="row js-spelling-toggle">
-                                <xsl:attribute name="data-target-id">spelling-<xsl:value-of select="position()" /></xsl:attribute>
+                            <div class="row">
+                                <!--xsl:attribute name="data-target-id">spelling-<xsl:value-of select="position()" /></xsl:attribute-->
                                 <div class="col none">
-                                    <i class="fa fa-plus-circle fa-2x text-grey toggle-opened"></i>
-                                    <i class="fa fa-minus-circle fa-2x text-grey toggle-closed"></i>
+                                    <a class="js-toggle" data-closest=".spelling" href="#">
+                                        <i class="fa fa-plus-circle fa-2x text-grey toggle-opened"></i>
+                                        <i class="fa fa-minus-circle fa-2x text-grey toggle-closed"></i>
+                                    </a>
                                 </div>
                                 <div class="col double">
                                     <dl>
@@ -136,7 +139,7 @@
                                 <div class="col">
                                     <dl>
                                         <dt>
-                                            Navneskastatus
+                                            Navnesakstatus
                                         </dt>
                                         <dd>
                                             <span class="translate"><xsl:value-of select="../../app:navnesakstatus" /></span>
@@ -165,118 +168,142 @@
                             </div>
                         </div>
                         <div class="ssr-shadow toggle">
-                            <div class="ssr-info">
-                                <h3 class="kv-heading">
-                                    <span class="text">Informasjon om skrivemåten</span>
-                                    <span class="line"></span>
-                                </h3>
-                                <div class="ssr-columns">
-                                    <dl>
-                                        <dt>Stadnamn</dt>
-                                        <dd>
-                                            <xsl:value-of select="app:langnavn" />
-                                        </dd>
-                                        <dt>Stadnamnnummer</dt>
-                                        <dd>
-                                            <xsl:value-of select="../../../../app:stedsnummer" />
-                                            <xsl:text>-</xsl:text>
-                                            <xsl:value-of select="../../app:stedsnavnnummer" />
-                                        </dd>
-                                        <dt>Skrivemåtenr.</dt>
-                                        <dd>
-                                            <xsl:value-of select="../../../../app:stedsnummer" />
-                                            <xsl:text>-</xsl:text>
-                                            <xsl:value-of select="../../app:stedsnavnnummer" />
-                                            <xsl:text>-</xsl:text>
-                                            <xsl:value-of select="app:skrivemåtenummer" />
-                                        </dd>
-                                        <dt>Språk</dt>
-                                        <dd>
-                                            <span class="translate"><xsl:value-of select="../../app:språk" /></span>
-                                        </dd>
-                                        <dt>Opphavsspråk</dt>
-                                        <dd>
-                                            <span class="translate"><xsl:value-of select="../../app:opphavsspråk" /></span>
-                                        </dd>
-                                        <dt>Namnestatus</dt>
-                                        <dd>
-                                            <span class="translate"><xsl:value-of select="../../app:navnestatus" /></span>
-                                        </dd>
-                                        <dt>Vedtatt av</dt>
-                                        <dd>
-                                            <!--xsl:value-of select="$vedtaksmyndighet" /-->
-                                        </dd>
-                                        <dt>Statusdato</dt>
-                                        <dd>
-                                            <xsl:call-template name="formater-dato">
-                                                <xsl:with-param name="dato" select="app:statusdato" />
-                                            </xsl:call-template>
-                                        </dd>
-                                        <dt>Namnesak dok.-nr.</dt>
-                                        <dd>
-                                            <xsl:apply-templates select="app:dokumentasjon/app:DokumenterVedtak" />
-                                        </dd>
-                                    </dl>
+                            
+                            <div class="ssr-info open">
+                                <div class="heading">
+                                    <a class="js-toggle" data-closest=".ssr-info" href="#">
+                                        <i class="fa fa-plus-circle closed"></i>
+                                        <i class="fa fa-minus-circle opened"></i>
+                                        Informasjon om skrivemåten
+                                    </a>
+                                </div>
+                                <div class="body">
+                                    <div class="ssr-columns">
+                                        <dl>
+                                            <dt>Stadnamn</dt>
+                                            <dd>
+                                                <xsl:value-of select="app:langnavn" />
+                                            </dd>
+                                            <dt>Stadnamnnummer</dt>
+                                            <dd>
+                                                <xsl:value-of select="../../../../app:stedsnummer" />
+                                                <xsl:text>-</xsl:text>
+                                                <xsl:value-of select="../../app:stedsnavnnummer" />
+                                            </dd>
+                                            <dt>Skrivemåtenr.</dt>
+                                            <dd>
+                                                <xsl:value-of select="../../../../app:stedsnummer" />
+                                                <xsl:text>-</xsl:text>
+                                                <xsl:value-of select="../../app:stedsnavnnummer" />
+                                                <xsl:text>-</xsl:text>
+                                                <xsl:value-of select="app:skrivemåtenummer" />
+                                            </dd>
+                                            <dt>Språk</dt>
+                                            <dd>
+                                                <span class="translate"><xsl:value-of select="../../app:språk" /></span>
+                                            </dd>
+                                            <dt>Opphavsspråk</dt>
+                                            <dd>
+                                                <span class="translate"><xsl:value-of select="../../app:opphavsspråk" /></span>
+                                            </dd>
+                                            <dt>Namnestatus</dt>
+                                            <dd>
+                                                <span class="translate"><xsl:value-of select="../../app:navnestatus" /></span>
+                                            </dd>
+                                            <dt>Vedtatt av</dt>
+                                            <dd>
+                                                <!--xsl:value-of select="$vedtaksmyndighet" /-->
+                                            </dd>
+                                            <dt>Statusdato</dt>
+                                            <dd>
+                                                <xsl:call-template name="formater-dato">
+                                                    <xsl:with-param name="dato" select="app:statusdato" />
+                                                </xsl:call-template>
+                                            </dd>
+                                            <dt>Namnesak dok.-nr.</dt>
+                                            <dd>
+                                                <xsl:apply-templates select="app:dokumentasjon/app:DokumenterVedtak" />
+                                            </dd>
+                                        </dl>
+                                    </div>
                                 </div>
                             </div>
                             <div class="ssr-info">
-                                <h3 class="kv-heading">
-                                    <span class="text">Dokumentasjon på offentleg bruk</span>
-                                    <span class="line"></span>
-                                </h3>
-                                <div class="ssr-docs">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Dokumentasjon</th>
-                                                <th>Offentlig</th>
-                                                <th>Kartbladnr.</th>
-                                                <th>Registrert dato</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <xsl:for-each select="app:dokumentasjon/*">
-                                                <xsl:sort select="app:registreringsdato" />
+                                <div class="heading">
+                                    <a class="js-toggle" data-closest=".ssr-info" href="#">
+                                        <i class="fa fa-plus-circle closed"></i>
+                                        <i class="fa fa-minus-circle opened"></i>
+                                        Tilleggsopplysningar
+                                    </a>
+                                </div>
+                                <div class="body">
+                                    foo
+                                </div>
+                            </div>
+                            <div class="ssr-info">
+                                <div class="heading">
+                                    <a class="js-toggle" data-closest=".ssr-info" href="#">
+                                        <i class="fa fa-plus-circle closed"></i>
+                                        <i class="fa fa-minus-circle opened"></i>
+                                        Dokumentasjon på offentleg bruk
+                                    </a>
+                                </div>
+                                <div class="body">
+                                    <div class="ssr-docs">
+                                        <table>
+                                            <thead>
                                                 <tr>
-                                                    <td>
-                                                        <xsl:variable name="dokumentasjonstype" select="substring-after(name(.), ':')" />
-                                                        <xsl:choose>
-                                                            <xsl:when test="$dokumentasjonstype = 'Kartforekomst'">
-                                                                <xsl:value-of select="app:produktkode" />
-                                                            </xsl:when>
-                                                            <xsl:when test="$dokumentasjonstype = 'DokumentertVedtak'">
-                                                                *Dokumentert vedtak*
-                                                            </xsl:when>
-                                                            <xsl:otherwise>
-                                                                <xsl:value-of select="app:id" />
-                                                            </xsl:otherwise>
-                                                        </xsl:choose>
-                                                        (<xsl:value-of select="$dokumentasjonstype" />)
-                                                    </td>
-                                                    <td>
-                                                        <xsl:choose>
-                                                            <xsl:when test="app:offentligBruk = 'true'">
-                                                                Ja
-                                                            </xsl:when>
-                                                            <xsl:otherwise>
-                                                                Nei
-                                                            </xsl:otherwise>
-                                                        </xsl:choose>
-                                                    </td>
-                                                    <td>
-                                                        -
-                                                    </td>
-                                                    <td>
-                                                        <xsl:call-template name="formater-dato">
-                                                            <xsl:with-param name="dato" select="app:registreringsdato" />
-                                                        </xsl:call-template>
-                                                    </td>
+                                                    <th>Dokumentasjon</th>
+                                                    <th>Offentlig</th>
+                                                    <th>Kartbladnr.</th>
+                                                    <th>Registrert dato</th>
                                                 </tr>
-                                            </xsl:for-each>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <xsl:for-each select="app:dokumentasjon/*">
+                                                    <xsl:sort select="app:registreringsdato" />
+                                                    <tr>
+                                                        <td>
+                                                            <xsl:variable name="dokumentasjonstype" select="substring-after(name(.), ':')" />
+                                                            <xsl:choose>
+                                                                <xsl:when test="$dokumentasjonstype = 'Kartforekomst'">
+                                                                    <xsl:value-of select="app:produktkode" />
+                                                                </xsl:when>
+                                                                <xsl:when test="$dokumentasjonstype = 'DokumentertVedtak'">
+                                                                    *Dokumentert vedtak*
+                                                                </xsl:when>
+                                                                <xsl:otherwise>
+                                                                    <xsl:value-of select="app:id" />
+                                                                </xsl:otherwise>
+                                                            </xsl:choose>
+                                                            (<xsl:value-of select="$dokumentasjonstype" />)
+                                                        </td>
+                                                        <td>
+                                                            <xsl:choose>
+                                                                <xsl:when test="app:offentligBruk = 'true'">
+                                                                    Ja
+                                                                </xsl:when>
+                                                                <xsl:otherwise>
+                                                                    Nei
+                                                                </xsl:otherwise>
+                                                            </xsl:choose>
+                                                        </td>
+                                                        <td>
+                                                            -
+                                                        </td>
+                                                        <td>
+                                                            <xsl:call-template name="formater-dato">
+                                                                <xsl:with-param name="dato" select="app:registreringsdato" />
+                                                            </xsl:call-template>
+                                                        </td>
+                                                    </tr>
+                                                </xsl:for-each>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </xsl:for-each>

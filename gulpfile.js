@@ -11,6 +11,11 @@ gulp.task('fonts', function () {
     .pipe(gulp.dest('./css/'));
 });
 
+gulp.task('scripts', function () {
+    gulp.src('./bower_components/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest('./js/'));
+});
+
 gulp.task('sass', function() {
     gulp.src('src/sass/**/*.scss')
     .pipe(sourcemaps.init())
@@ -34,7 +39,7 @@ gulp.task('connect', function() {
     connect.server();
 });
 
-gulp.task('default', ['fonts', 'sass', 'uglify', 'xsl', 'connect'], function() {
+gulp.task('default', ['fonts', 'scripts', 'sass', 'uglify', 'xsl', 'connect'], function() {
     gulp.watch('src/sass/**/*.scss', ['sass']);
     gulp.watch('src/js/**/*.js', ['uglify']);
     gulp.watch('src/xsl/**/*.xsl', ['xsl']);
