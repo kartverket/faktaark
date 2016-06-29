@@ -126,7 +126,7 @@ p {
         .line {
             background-color: $color-blue;
             flex-grow: 1;
-            height: 3px;
+            height: 2px;
             margin-top: 2px;
         }
     }
@@ -175,19 +175,31 @@ p {
 
 .spellings {
     border-top: dashed 1px $color-cyan;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-	flex-direction: column;
+    @include suffix(display, flex, webkit);
+    @include prefix(flex-direction, column, webkit);
     
     .spelling {
         border-bottom: dashed 1px $color-cyan;
-        -webkit-flex: auto;
-        flex: auto;
+        @include prefix(flex, auto, webkit);
     }
 }
 
 .toggle {
+    display: none;
+
+    .open & {
+        display: block;
+    }
+}
+
+.toggle-opened {
+    display: block;
+
+    .open & {
+        display: none;
+    }
+}
+.toggle-closed {
     display: none;
 
     .open & {
@@ -200,14 +212,18 @@ p {
     .row {
         cursor: pointer;
         @include suffix(display, flex, webkit);
-        @include prefix(flex-direction, row, webkit);
+        @include prefix(flex-direction, column, webkit);
         @include prefix(user-select, none, moz webkit ms);
+
+        @media (min-width: $size-tablet) {
+            @include prefix(flex-direction, row, webkit);
+        }
 
         &:hover {
             background-color: rgba(0,0,0,0.05);
         }
         .open & {
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0,0,0,0.05);
         }
     }
     
@@ -215,7 +231,11 @@ p {
         -webkit-flex: 1;
         flex: 1;
         line-height: 20px;
-        padding: 1.5rem 1rem;
+        padding: 0.2rem 0;
+
+        @media (min-width: $size-tablet) {
+            padding: 1.5rem 0 1.5rem 1rem;
+        }
         
         &.none {
             -webkit-flex: 0;
@@ -239,7 +259,8 @@ p {
     }
 
     .case {
-        float: right;
+        font-size: 1.2rem;
+        font-style: italic;
 
         &:before {
             content: " (";
@@ -247,10 +268,24 @@ p {
         &:after {
             content: ")";
         }
+
+        @media (min-width: $size-tablet) {
+            float: right;
+
+            &:before,
+            &:after {
+                content: "";
+            }
+        }
+
+        
     }
 
     .fa {
-        margin-top: 0.5rem;
+        line-height: inherit;
+    }
+    .fa-2x {
+        margin-top: 1rem;
     }
 }
 
@@ -260,8 +295,12 @@ p {
 
 .ssr-shadow {
     border-top: dashed 1px $color-cyan;
-    padding: 1.5rem 1rem 1rem 1rem;
+    padding: 1.5rem 0 1rem 0;
     position: relative;
+
+    @media (min-width: $size-tablet) {
+        padding: 1.5rem 1rem 1rem 1rem;
+    }
 
     &:before,
     &:after {
@@ -285,9 +324,16 @@ p {
 .ssr-columns {
     
     dl {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
+        @include prefix(column-count, 1, webkit moz);
+
+        @media (min-width: $size-tablet) {
+            @include prefix(column-count, 2, webkit moz);
+        }
+    }
+
+    dt,
+    dd {
+        @extend %ellipsis;
     }
 
     dt {

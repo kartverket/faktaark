@@ -104,14 +104,8 @@
                             <div class="row js-spelling-toggle">
                                 <xsl:attribute name="data-target-id">spelling-<xsl:value-of select="position()" /></xsl:attribute>
                                 <div class="col none">
-                                    <i>
-                                        <xsl:attribute name="class">
-                                            <xsl:text>fa fa-circle fa-2x text-vertical text-</xsl:text>
-                                            <xsl:call-template name="hent-skrivemåtestatus">
-                                                <xsl:with-param name="skrivemåtestatus" select="app:skrivemåtestatus" />
-                                            </xsl:call-template>
-                                        </xsl:attribute>
-                                    </i>
+                                    <i class="fa fa-plus-circle fa-2x text-grey toggle-opened"></i>
+                                    <i class="fa fa-minus-circle fa-2x text-grey toggle-closed"></i>
                                 </div>
                                 <div class="col double">
                                     <dl>
@@ -155,12 +149,18 @@
                                             Skrivemåtestatus
                                         </dt>
                                         <dd>
+                                            <i>
+                                                <xsl:attribute name="class">
+                                                    <xsl:text>fa fa-circle text-</xsl:text>
+                                                    <xsl:call-template name="hent-skrivemåtestatus">
+                                                        <xsl:with-param name="skrivemåtestatus" select="app:skrivemåtestatus" />
+                                                    </xsl:call-template>
+                                                </xsl:attribute>
+                                            </i>
+                                            <xsl:text> </xsl:text>
                                             <span class="translate"><xsl:value-of select="app:skrivemåtestatus" /></span>
                                         </dd>
                                     </dl>
-                                </div>
-                                <div class="col none">
-                                    <i class="fa fa-plus-square-o text-vertical"></i>
                                 </div>
                             </div>
                         </div>

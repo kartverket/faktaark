@@ -30,3 +30,8 @@
     line-height: 1.2em;
     margin: 0 0 0.5em 0;
 }
+%ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
