@@ -6,7 +6,7 @@
                 <meta content="utf-8" />
                 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
                 <title>Faktaark - Kartverket</title>
-                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+                <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
                 <link href="css/faktaark.css" rel="stylesheet" type="text/css" />
             </head>
             <body>

@@ -4,6 +4,19 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
 
+var config = {
+    styles: [
+        './bower_components/font-awesome/css/font-awesome.css'
+    ]
+}
+
+gulp.task('fonts', function () {
+    gulp.src('./bower_components/font-awesome/fonts/*.*')
+    .pipe(gulp.dest('./fonts/'));
+    gulp.src('./bower_components/font-awesome/css/font-awesome.min.css')
+    .pipe(gulp.dest('./css/'));
+});
+
 gulp.task('sass', function() {
     gulp.src('src/sass/**/*.scss')
     .pipe(sourcemaps.init())
@@ -27,7 +40,7 @@ gulp.task('connect', function() {
     connect.server();
 });
 
-gulp.task('default', ['sass', 'uglify', 'xsl', 'connect'], function() {
+gulp.task('default', ['fonts', 'sass', 'uglify', 'xsl', 'connect'], function() {
     gulp.watch('src/sass/**/*.scss', ['sass']);
     gulp.watch('src/js/**/*.js', ['uglify']);
     gulp.watch('src/xsl/**/*.xsl', ['xsl']);
