@@ -403,6 +403,52 @@ p {
     }
 }
 
+.ssr-column {
+    
+    dl {
+        @include prefix(column-count, 1, webkit moz);
+    }
+
+    dt,
+    dd {
+        @extend %ellipsis;
+    }
+
+    dt {
+        float: left;
+        line-height: 2rem;
+        width: 50%;
+
+        @media (min-width: $size-tablet) {
+            width: 25%;
+        }
+
+        &:after {
+            content: ":";
+        }
+    }
+
+    dd {
+        width: auto;
+        overflow: hidden;
+        float: none;
+        margin-left: 50%;
+        line-height: 2rem;
+        word-wrap: break-word;
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+
+        @media (min-width: $size-tablet) {
+            margin-left: 25%;
+        }
+
+        &:after {
+            content: "\A0";
+        }
+    }
+}
+
 .ssr-docs {
     table {
         width: 100%;

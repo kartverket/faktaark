@@ -49,7 +49,8 @@ h1, h2, h3 {
   margin: 0 0 0.5em 0; }
 
 .ssr-columns dt,
-.ssr-columns dd {
+.ssr-columns dd, .ssr-column dt,
+.ssr-column dd {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; }
@@ -355,6 +356,37 @@ p {
   page-break-inside: avoid;
   break-inside: avoid; }
   .ssr-columns dd:after {
+    content: "\A0"; }
+
+.ssr-column dl {
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  column-count: 1; }
+
+.ssr-column dt {
+  float: left;
+  line-height: 2rem;
+  width: 50%; }
+  @media (min-width: 740px) {
+    .ssr-column dt {
+      width: 25%; } }
+  .ssr-column dt:after {
+    content: ":"; }
+
+.ssr-column dd {
+  width: auto;
+  overflow: hidden;
+  float: none;
+  margin-left: 50%;
+  line-height: 2rem;
+  word-wrap: break-word;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid; }
+  @media (min-width: 740px) {
+    .ssr-column dd {
+      margin-left: 25%; } }
+  .ssr-column dd:after {
     content: "\A0"; }
 
 .ssr-docs table {

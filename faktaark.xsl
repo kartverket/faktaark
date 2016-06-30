@@ -237,7 +237,18 @@
                                     </a>
                                 </div>
                                 <div class="body">
-                                    foo
+                                    <div class="ssr-column">
+                                        <xsl:for-each select="../../app:tilleggsopplysninger/app:Tilleggsopplysning">
+                                            <dl>
+                                                <dt>
+                                                    <xsl:value-of select="app:tilleggsopplysningstype" />
+                                                </dt>
+                                                <dd>
+                                                    <xsl:value-of select="app:tekst" />
+                                                </dd>
+                                            </dl>
+                                        </xsl:for-each>
+                                    </div>
                                 </div>
                             </div>
                             <div class="ssr-info">
