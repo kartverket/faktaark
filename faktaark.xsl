@@ -274,33 +274,51 @@
                                                 <xsl:for-each select="app:dokumentasjon/*">
                                                     <xsl:sort select="app:registreringsdato" />
                                                     <tr>
-                                                        <td>
-                                                            <xsl:variable name="dokumentasjonstype" select="substring-after(name(.), ':')" />
-                                                            <xsl:choose>
-                                                                <xsl:when test="$dokumentasjonstype = 'Kartforekomst'">
+                                                        <xsl:variable name="dokumentasjonstype" select="substring-after(name(.), ':')" />
+                                                        <xsl:choose>
+                                                            <xsl:when test="$dokumentasjonstype = 'Kartforekomst'">
+                                                                <td>
                                                                     <xsl:value-of select="app:produktkode" />
-                                                                </xsl:when>
-                                                                <xsl:when test="$dokumentasjonstype = 'DokumentertVedtak'">
-                                                                    *Dokumentert vedtak*
-                                                                </xsl:when>
-                                                                <xsl:otherwise>
-                                                                    <xsl:value-of select="app:id" />
-                                                                </xsl:otherwise>
-                                                            </xsl:choose>
-                                                            (<xsl:value-of select="$dokumentasjonstype" />)
-                                                        </td>
-                                                        <td>
-                                                            <xsl:choose>
-                                                                <xsl:when test="app:offentligBruk = 'true'">
+                                                                </td>
+                                                                <td>
                                                                     Ja
-                                                                </xsl:when>
-                                                                <xsl:otherwise>
-                                                                    Nei
-                                                                </xsl:otherwise>
-                                                            </xsl:choose>
-                                                        </td>
+                                                                </td>
+                                                            </xsl:when>
+                                                            <xsl:when test="$dokumentasjonstype = 'DokumentertVedtak' or $dokumentasjonstype = 'DokumentertKlage'">
+                                                                <td>
+                                                                    Dokumentert vedtak
+                                                                </td>
+                                                                <td>
+                                                                    Ja
+                                                                </td>
+                                                            </xsl:when>
+                                                            <xsl:when test="$dokumentasjonstype = 'DokumentertSamlevedtak'">
+                                                                <td>
+                                                                    Dokumentert samlevedtak
+                                                                </td>
+                                                                <td>
+                                                                    Ja
+                                                                </td>
+                                                            </xsl:when>
+                                                            <xsl:when test="$dokumentasjonstype = 'Dokument'">
+                                                                <td>
+                                                                    <xsl:value-of select="app:beskrivelse" />
+                                                                </td>
+                                                                <td>
+                                                                    ?
+                                                                </td>
+                                                            </xsl:when>
+                                                            <xsl:otherwise>
+                                                                <td>
+                                                                    <xsl:value-of select="app:id" /> (<xsl:value-of select="$dokumentasjonstype" />)
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+                                                            </xsl:otherwise>
+                                                        </xsl:choose>
                                                         <td>
-                                                            -
+                                                            <xsl:value-of select="app:kartblad" />
                                                         </td>
                                                         <td>
                                                             <xsl:call-template name="formater-dato">
