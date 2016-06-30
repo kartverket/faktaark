@@ -225,8 +225,6 @@ p {
     .ssr-general .row {
       -webkit-flex-direction: row;
       flex-direction: row; } }
-  .ssr-general .row:hover {
-    background-color: rgba(0, 0, 0, 0.05); }
   .open .ssr-general .row {
     background-color: rgba(0, 0, 0, 0.05); }
 
@@ -240,7 +238,7 @@ p {
       padding: 1.5rem 0 1.5rem 1rem; } }
   .ssr-general .col.none {
     -webkit-flex: 0;
-    flex: 0; }
+    flex: none; }
   .ssr-general .col.half {
     -webkit-flex: 0.5;
     flex: 0.5; }
@@ -272,9 +270,9 @@ p {
   margin-top: 1rem; }
 
 .ssr-info {
-  border-top: solid 1px #1a589f; }
+  border-bottom: solid 1px #1a589f; }
   .ssr-info:last-child {
-    border-bottom: solid 1px #1a589f; }
+    border-bottom: none; }
   .ssr-info .heading {
     color: #1a589f;
     font-weight: 700;
@@ -340,6 +338,7 @@ p {
 
 .ssr-columns dt {
   float: left;
+  font-weight: 700;
   line-height: 2rem;
   width: 50%; }
   .ssr-columns dt:after {
@@ -365,6 +364,7 @@ p {
 
 .ssr-column dt {
   float: left;
+  font-weight: 700;
   line-height: 2rem;
   width: 50%; }
   @media (min-width: 740px) {

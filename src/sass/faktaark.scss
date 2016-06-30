@@ -219,9 +219,6 @@ p {
             @include prefix(flex-direction, row, webkit);
         }
 
-        &:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
         .open & {
             background-color: rgba(0,0,0,0.05);
         }
@@ -239,7 +236,7 @@ p {
         
         &.none {
             -webkit-flex: 0;
-            flex: 0;
+            flex: none;
         }
         &.half {
             -webkit-flex: 0.5;
@@ -290,11 +287,11 @@ p {
 }
 
 .ssr-info {
-    border-top: solid 1px $color-blue;
+    border-bottom: solid 1px $color-blue;
     //margin: 1.5rem 0 2rem 0;
     
     &:last-child {
-        border-bottom: solid 1px $color-blue;
+        border-bottom: none;
     }
 
     .heading {
@@ -378,6 +375,7 @@ p {
 
     dt {
         float: left;
+        font-weight: 700;
         line-height: 2rem;
         width: 50%;
 
@@ -416,6 +414,7 @@ p {
 
     dt {
         float: left;
+        font-weight: 700;
         line-height: 2rem;
         width: 50%;
 
