@@ -118,7 +118,21 @@
                                         </dt>
                                         <xsl:for-each select="app:kasuser/app:KasusForSkrivemåte">
                                             <dd>
-                                                <xsl:value-of select="app:kjernenavn" />
+                                                <span class="ssr-name-order js-name-order">
+                                                    <xsl:attribute name="data-order"><xsl:value-of select="../../app:rekkefølge" /></xsl:attribute>
+                                                    <span class="name K">
+                                                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../app:rekkefølge, 'K'))" />;</xsl:attribute>
+                                                        <xsl:value-of select="app:kjernenavn" />
+                                                    </span>
+                                                    <span class="name V">
+                                                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../app:rekkefølge, 'V'))" />;</xsl:attribute>
+                                                        <xsl:value-of select="app:variasjonstillegg" />
+                                                    </span>
+                                                    <span class="name F">
+                                                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../app:rekkefølge, 'F'))" />;</xsl:attribute>
+                                                        <xsl:value-of select="app:funksjonstillegg" />
+                                                    </span>  
+                                                </span>
                                                 <span class="case">
                                                     <span class="translate"><xsl:value-of select="app:kasusTilKjernenavn" /></span>
                                                 </span>
@@ -139,7 +153,7 @@
                                 <div class="col">
                                     <dl>
                                         <dt>
-                                            Navnesakstatus
+                                            Namnesakstatus
                                         </dt>
                                         <dd>
                                             <span class="translate"><xsl:value-of select="../../app:navnesakstatus" /></span>
@@ -265,7 +279,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Dokumentasjon</th>
-                                                    <th>Offentlig</th>
+                                                    <th>Offentleg</th>
                                                     <th>Kartbladnr.</th>
                                                     <th>Registrert dato</th>
                                                 </tr>

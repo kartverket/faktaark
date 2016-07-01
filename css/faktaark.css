@@ -406,4 +406,17 @@ p {
   font-weight: 700;
   text-align: left; }
 
+.ssr-name-order {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row; }
+  .ssr-name-order .name {
+    -webkit-flex: none;
+    flex: none; }
+    .ssr-name-order .name:after {
+      content: "\A0"; }
+    .ssr-name-order .name:empty {
+      display: none; }
+
 /*# sourceMappingURL=faktaark.css.map */

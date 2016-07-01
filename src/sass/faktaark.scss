@@ -467,3 +467,20 @@ p {
         text-align: left;
     }
 }
+
+.ssr-name-order {
+    @include suffix(display, flex, webkit);
+    @include prefix(flex-direction, row, webkit);
+
+    .name {
+        -webkit-flex: none;
+        flex: none;
+
+        &:after {
+            content: "\A0";
+        }
+        &:empty {
+            display: none;
+        }
+    }
+}
