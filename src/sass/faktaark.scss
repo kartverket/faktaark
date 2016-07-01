@@ -63,13 +63,16 @@ body {
     color:  $color-blue;
 }
 .text-brown {
-    color: $color-yellow;
+    color: saddlebrown;
 }
 .text-orange {
     color: $color-orange;
 }
 .text-grey {
     color: $color-grey;
+}
+.text-yellow {
+    color: $color-yellow;
 }
 /* === */
 
@@ -134,11 +137,16 @@ p {
 /* === */
 
 .translate {
-    color: $color-red;
+    &:after {
+        font-family: "FontAwesome";
+        font-size: 1rem;
+        content: "\a0\f006";
+    }
 
     &.translated {
-        //color: inherit;
-        color: $color-green;
+        &:after {
+            content: "\a0\f005";
+        }
     }
 }
 
@@ -299,6 +307,9 @@ p {
 
     .fa {
         line-height: inherit;
+    }
+    .fa-circle:after {
+        content: "\a0";
     }
     .fa-2x {
         margin-top: 1rem;

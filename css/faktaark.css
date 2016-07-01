@@ -111,13 +111,16 @@ body {
   color: #1a589f; }
 
 .text-brown {
-  color: #f0b323; }
+  color: saddlebrown; }
 
 .text-orange {
   color: #e87722; }
 
 .text-grey {
   color: #898d8d; }
+
+.text-yellow {
+  color: #f0b323; }
 
 /* === */
 /* TYPOGRAPHY */
@@ -166,10 +169,13 @@ p {
         margin-top: 2px; } }
 
 /* === */
-.translate {
-  color: #bf0d3e; }
-  .translate.translated {
-    color: #249446; }
+.translate:after {
+  font-family: "FontAwesome";
+  font-size: 1rem;
+  content: "\a0\f006"; }
+
+.translate.translated:after {
+  content: "\a0\f005"; }
 
 /* SSR TABLE */
 .ssr-table table {
@@ -285,6 +291,9 @@ p {
 
 .ssr-general .fa {
   line-height: inherit; }
+
+.ssr-general .fa-circle:after {
+  content: "\a0"; }
 
 .ssr-general .fa-2x {
   margin-top: 1rem; }

@@ -171,16 +171,10 @@
                                             Skrivemåtestatus
                                         </dt>
                                         <dd>
-                                            <i>
-                                                <xsl:attribute name="class">
-                                                    <xsl:text>fa fa-circle text-</xsl:text>
-                                                    <xsl:call-template name="hent-skrivemåtestatus">
-                                                        <xsl:with-param name="skrivemåtestatus" select="app:skrivemåtestatus" />
-                                                    </xsl:call-template>
-                                                </xsl:attribute>
-                                            </i>
-                                            <xsl:text> </xsl:text>
-                                            <span class="translate"><xsl:value-of select="app:skrivemåtestatus" /></span>
+                                            <xsl:call-template name="hent-skrivemåtestatus">
+                                                <xsl:with-param name="skrivemåtestatus" select="app:skrivemåtestatus" />
+                                                <xsl:with-param name="prioritertSkrivemåte" select="app:prioritertSkrivemåte" />
+                                            </xsl:call-template>
                                         </dd>
                                     </dl>
                                 </div>
@@ -414,13 +408,54 @@
 
     <xsl:template name="hent-skrivemåtestatus">
         <xsl:param name="skrivemåtestatus" />
+        <xsl:param name="prioritertSkrivemåte" />
         
         <xsl:choose>
-            <xsl:when test="$skrivemåtestatus = 'vedtatt' or $skrivemåtestatus = 'godkjent'">green</xsl:when>
-            <xsl:when test="$skrivemåtestatus = 'avslått' or $skrivemåtestatus = 'feilført'">red</xsl:when>
-            <xsl:when test="$skrivemåtestatus = 'historisk'">brown</xsl:when>
-            <xsl:otherwise>grey</xsl:otherwise>
+            <xsl:when test="$skrivemåtestatus = 'godkjent' and $prioritertSkrivemåte = 'true'">
+                <i class="fa fa-circle text-green"></i>Godkjent og tilrådd
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'godkjent' and $prioritertSkrivemåte = 'false'">
+                <i class="fa fa-circle text-orange"></i>Godkjent og ikkje tilrådd
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'vedtatt'">
+                <i class="fa fa-circle text-green"></i>Vedtatt
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'vedtattNavneledd' and $prioritertSkrivemåte = 'true'">
+                <i class="fa fa-circle text-green"></i>Vedtatt namneledd og tilrådd
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'vedtattNavneledd' and $prioritertSkrivemåte = 'false'">
+                <i class="fa fa-circle text-orange"></i>Vedtatt namneledd og ikkje tilrådd
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'avslått'">
+                <i class="fa fa-circle text-red"></i>Avslege
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'avslåttNavneledd'">
+                <i class="fa fa-circle text-red"></i>Avslege namneledd
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'feilført'">
+                <i class="fa fa-circle text-red"></i>Feilført
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'internasjonal'">
+                <i class="fa fa-circle text-blue"></i>Internasjonalt
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'privat'">
+                <i class="fa fa-circle text-yellow"></i>Privat
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'historisk'">
+                <i class="fa fa-circle text-brown"></i>Historisk
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'foreslått'">
+                <i class="fa fa-circle text-red"></i>Føreslege
+            </xsl:when>
+            <xsl:when test="$skrivemåtestatus = 'uvurdert'">
+                <i class="fa fa-circle text-red"></i>Uvurdert
+            </xsl:when>
+            <xsl:otherwise>
+                <i class="fa fa-circle text-grey"></i><xsl:value-of select="$skrivemåtestatus" />
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
+
+
