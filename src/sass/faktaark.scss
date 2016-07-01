@@ -255,27 +255,46 @@ p {
         }
     }
 
-    .case {
-        font-size: 1.2rem;
-        font-style: italic;
-
-        &:before {
-            content: " (";
-        }
-        &:after {
-            content: ")";
-        }
-
+    .names {
         @media (min-width: $size-tablet) {
-            float: right;
-
-            &:before,
+            @include suffix(display, flex, webkit);
+            @include prefix(flex-direction, row, webkit);
+        }
+        
+        .name {
             &:after {
-                content: "";
+                content: "\A0";
+            }
+            &:empty {
+                display: none;
+            }
+
+            @media (min-width: $size-tablet) {
+                @include prefix(flex, none, webkit);
             }
         }
 
-        
+        .case {
+            font-size: 1.2rem;
+            order: 100;
+
+            &:before {
+                content: " (";
+            }
+            &:after {
+                content: ")";
+            }
+
+            @media (min-width: $size-tablet) {
+                @include prefix(flex, 1, webkit);
+                text-align: right;
+
+                &:before,
+                &:after {
+                    content: "";
+                }
+            }
+        }
     }
 
     .fa {
@@ -465,22 +484,5 @@ p {
     th {
         font-weight: 700;
         text-align: left;
-    }
-}
-
-.ssr-name-order {
-    @include suffix(display, flex, webkit);
-    @include prefix(flex-direction, row, webkit);
-
-    .name {
-        -webkit-flex: none;
-        flex: none;
-
-        &:after {
-            content: "\A0";
-        }
-        &:empty {
-            display: none;
-        }
     }
 }

@@ -250,17 +250,37 @@ p {
   font-size: 1.2rem;
   font-weight: 700; }
 
-.ssr-general .case {
+@media (min-width: 740px) {
+  .ssr-general .names {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row; } }
+
+.ssr-general .names .name:after {
+  content: "\A0"; }
+
+.ssr-general .names .name:empty {
+  display: none; }
+
+@media (min-width: 740px) {
+  .ssr-general .names .name {
+    -webkit-flex: none;
+    flex: none; } }
+
+.ssr-general .names .case {
   font-size: 1.2rem;
-  font-style: italic; }
-  .ssr-general .case:before {
+  order: 100; }
+  .ssr-general .names .case:before {
     content: " ("; }
-  .ssr-general .case:after {
+  .ssr-general .names .case:after {
     content: ")"; }
   @media (min-width: 740px) {
-    .ssr-general .case {
-      float: right; }
-      .ssr-general .case:before, .ssr-general .case:after {
+    .ssr-general .names .case {
+      -webkit-flex: 1;
+      flex: 1;
+      text-align: right; }
+      .ssr-general .names .case:before, .ssr-general .names .case:after {
         content: ""; } }
 
 .ssr-general .fa {
@@ -405,18 +425,5 @@ p {
 .ssr-docs th {
   font-weight: 700;
   text-align: left; }
-
-.ssr-name-order {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row; }
-  .ssr-name-order .name {
-    -webkit-flex: none;
-    flex: none; }
-    .ssr-name-order .name:after {
-      content: "\A0"; }
-    .ssr-name-order .name:empty {
-      display: none; }
 
 /*# sourceMappingURL=faktaark.css.map */

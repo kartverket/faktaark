@@ -114,28 +114,33 @@
                                     <dl>
                                         <dt>
                                             Skrivemåte
-                                            <span class="case">Kasus</span>
                                         </dt>
                                         <xsl:for-each select="app:kasuser/app:KasusForSkrivemåte">
                                             <dd>
-                                                <span class="ssr-name-order js-name-order">
-                                                    <xsl:attribute name="data-order"><xsl:value-of select="../../app:rekkefølge" /></xsl:attribute>
-                                                    <span class="name K">
-                                                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../app:rekkefølge, 'K'))" />;</xsl:attribute>
-                                                        <xsl:value-of select="app:kjernenavn" />
+                                                <div class="names">
+                                                    <xsl:variable name="rekkefølgefiks" select="concat(../../app:rekkefølge, '-K-V-F')" />
+                                                    <xsl:if test="app:kjernenavn != ''">
+                                                        <span class="name" data-type="K">
+                                                            <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before($rekkefølgefiks, 'K'))" />;</xsl:attribute>
+                                                            <xsl:value-of select="app:kjernenavn" />
+                                                        </span>
+                                                    </xsl:if>
+                                                    <xsl:if test="app:variasjonstillegg != ''">
+                                                        <span class="name" data-type="V">
+                                                            <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before($rekkefølgefiks, 'V'))" />;</xsl:attribute>
+                                                            <xsl:value-of select="app:variasjonstillegg" />
+                                                        </span>
+                                                    </xsl:if>
+                                                    <xsl:if test="app:funksjonstillegg != ''">
+                                                        <span class="name" data-type="F">
+                                                            <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before($rekkefølgefiks, 'F'))" />;</xsl:attribute>
+                                                            <xsl:value-of select="app:funksjonstillegg" />
+                                                        </span>
+                                                    </xsl:if>
+                                                    <span class="case">
+                                                        <span class="translate"><xsl:value-of select="app:kasusTilKjernenavn" /></span>
                                                     </span>
-                                                    <span class="name V">
-                                                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../app:rekkefølge, 'V'))" />;</xsl:attribute>
-                                                        <xsl:value-of select="app:variasjonstillegg" />
-                                                    </span>
-                                                    <span class="name F">
-                                                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../app:rekkefølge, 'F'))" />;</xsl:attribute>
-                                                        <xsl:value-of select="app:funksjonstillegg" />
-                                                    </span>  
-                                                </span>
-                                                <span class="case">
-                                                    <span class="translate"><xsl:value-of select="app:kasusTilKjernenavn" /></span>
-                                                </span>
+                                                </div>
                                             </dd>
                                         </xsl:for-each>
                                     </dl>
