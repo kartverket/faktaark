@@ -197,15 +197,9 @@ p {
 
 /* === */
 .spellings {
-  border-top: solid 1px #7da1c4;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column; }
+  border-top: solid 1px #7da1c4; }
   .spellings .spelling {
-    border-bottom: solid 1px #7da1c4;
-    -webkit-flex: auto;
-    flex: auto; }
+    border-bottom: solid 1px #7da1c4; }
 
 .toggle {
   display: none; }

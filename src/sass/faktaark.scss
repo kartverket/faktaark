@@ -183,12 +183,9 @@ p {
 
 .spellings {
     border-top: solid 1px $color-cyan;
-    @include suffix(display, flex, webkit);
-    @include prefix(flex-direction, column, webkit);
     
     .spelling {
         border-bottom: solid 1px $color-cyan;
-        @include prefix(flex, auto, webkit);
     }
 }
 

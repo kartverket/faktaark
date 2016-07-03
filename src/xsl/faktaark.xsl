@@ -18,11 +18,12 @@
                     </h1>
                     <p>Eit stadnamn er namnet på ein lokalitet. Stadnamn skal skrivast på bestemte måtar. Lov om stadnamn beskriv prosessane for fastsetjing av skrivemåten og bruken av stadnamn. Kartverket driftar Sentralt stadnamnregister (SSR), som inneheld offisielle skrivemåtar og sakshandsamingsinformasjon. Vedtekne skrivemåtar skal nyttast av det offentlege. Når eit namn ikkje er handsama etter reglane i lov om stadnamn, kan namnet ha fleire godkjende skrivemåtar. I slike tilfelle er det oppgjeve kva for ein godkjend skrivemåte som bør nyttast.</p> 
                     <p><a href="http://www.kartverket.no/Kart/Stedsnavn/">Les meir om stadnamn</a></p>
-                    
-                    <xsl:apply-templates select="wfs:FeatureCollection/wfs:member/app:Sted" />
-                    <script src="js/jquery.min.js"></script>
-                    <script src="js/faktaark.js"></script>
                 </section>
+                
+                <xsl:apply-templates select="wfs:FeatureCollection/wfs:member/app:Sted" />
+                
+                <script src="js/jquery.min.js"></script>
+                <script src="js/faktaark.js"></script>
             </body>
         </html>
     </xsl:template>
@@ -98,12 +99,10 @@
 
             <div class="spellings">
                 <xsl:for-each select="app:stedsnavn/app:Stedsnavn/app:skrivemåte/app:Skrivemåte">
+                    <xsl:sort data-type="number" select="string-length(substring-before(../../../../app:språkprioritering, ../../app:språk))" />
                     <div class="spelling">
-                        <!--xsl:attribute name="id">spelling-<xsl:value-of select="position()" /></xsl:attribute-->
-                        <xsl:attribute name="style">order: <xsl:value-of select="string-length(substring-before(../../../../app:språkprioritering, ../../app:språk))" />;</xsl:attribute>
                         <div class="ssr-general">
                             <div class="row">
-                                <!--xsl:attribute name="data-target-id">spelling-<xsl:value-of select="position()" /></xsl:attribute-->
                                 <div class="col none">
                                     <a class="js-toggle" data-closest=".spelling" href="#">
                                         <i class="fa fa-plus-circle fa-2x text-grey toggle-opened"></i>
