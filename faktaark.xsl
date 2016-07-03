@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:app="http://skjema.geonorge.no/SOSI/produktspesifikasjon/Stedsnavn/5.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:wfs="http://www.opengis.net/wfs/2.0">
+    <!-- Globale variabled -->
+    <xsl:variable name="språkprioritering" select="wfs:FeatureCollection/wfs:member/app:Sted/app:språkprioritering" />
+    <xsl:variable name="skrivemåteprioritering" select="'godkjent-vedtatt-vedtattNavneledd-avslått-avslåttNavneledd-feilført-internasjonal-privat-historisk-foreslått-uvurdert'" />
     <xsl:template match="/">
         <html>
             <head>
@@ -99,7 +102,9 @@
 
             <div class="spellings">
                 <xsl:for-each select="app:stedsnavn/app:Stedsnavn/app:skrivemåte/app:Skrivemåte">
-                    <xsl:sort data-type="number" select="string-length(substring-before(../../../../app:språkprioritering, ../../app:språk))" />
+                    <xsl:sort data-type="number" select="string-length(substring-before($språkprioritering, ../../app:språk))" />
+                    <xsl:sort data-type="number" select="string-length(substring-before($skrivemåteprioritering, app:skrivemåtestatus))" />
+                    <xsl:sort data-type="text" order="descending" select="app:prioritertSkrivemåte" />
                     <div class="spelling">
                         <div class="ssr-general">
                             <div class="row">
