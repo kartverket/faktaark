@@ -36,7 +36,9 @@ gulp.task('xsl', function() {
 });
  
 gulp.task('connect', function() {
-    connect.server();
+    connect.server({
+    port: 3000
+  });
 });
 
 gulp.task('default', ['fonts', 'scripts', 'sass', 'uglify', 'xsl', 'connect'], function() {
